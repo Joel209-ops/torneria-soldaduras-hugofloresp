@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tornería Cumpita | Soldadura, tornería y rectificado en Santa Cruz</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  
+  :root {
+    --acero-claro: #EEF0F1;   
+    --blanco-taller: #FAFAF9; 
+    --grafito: #22272B;       
+    --grafito-suave: #565D62; 
+    --chispa: #F4611E;        
+    --chispa-oscura: #C94A12; 
+    --bronce: #B8793B;        
+    --linea-acero: #CDD4D8;   
+    --sombra: 0 10px 30px rgba(34, 39, 43, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; } 
+
+  body {
+    background: var(--acero-claro);
+    color: var(--grafito);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }
+  .mono { font-family: 'Space Mono', monospace; }
+
+  .contenedor {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primario { background: var(--chispa); color: #fff; }
+  .btn-primario:hover { background: var(--chispa-oscura); }
+  .btn-secundario { background: transparent; color: var(--grafito); border-color: var(--grafito); }
+  .btn-secundario:hover { background: var(--grafito); color: #fff; }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 250, 249, 0.9);
+    backdrop-filter: blur(8px); 
+    border-bottom: 1px solid var(--linea-acero);
+  }
+  .barra-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .marca-icono {
+    width: 42px;
+    height: 42px;
+    background: var(--grafito);
+    color: var(--chispa);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .marca-texto { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 17px; }
+  .marca-texto small { display: block; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.08em; color: var(--grafito-suave); text-transform: uppercase; }
+
+  nav.enlaces { display: flex; gap: 28px; }
+  nav.enlaces a {
+    color: var(--grafito-suave);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  nav.enlaces a:hover { color: var(--chispa); }
+
+  .header-cta { display: flex; align-items: center; gap: 16px; }
+  .header-tel { display: none; font-family: 'Space Mono', monospace; font-size: 14px; }
+
+  @media (min-width: 860px) {
+    .header-tel { display: inline; }
+  }
+  @media (max-width: 720px) {
+    nav.enlaces { display: none; } 
+  }
+
+  .hero {
+    position: relative;
+    padding: 90px 0 70px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--chispa-oscura);
+    background: rgba(244, 97, 30, 0.1);
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 22px;
+  }
+  .eyebrow-punto {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--chispa);
+    animation: parpadeo 1.4s infinite;
+  }
+  @keyframes parpadeo { 50% { opacity: 0.25; } }
+
+  .hero h1 {
+    font-size: clamp(38px, 5.5vw, 62px);
+    line-height: 1.03;
+    color: var(--grafito);
+  }
+  .hero h1 span { color: var(--chispa); }
+
+  .hero p.intro {
+    margin-top: 22px;
+    max-width: 480px;
+    color: var(--grafito-suave);
+    font-size: 16.5px;
+  }
+
+  .hero-botones { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+
+  .hero-firma {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--grafito-suave);
+  }
+  .hero-firma-linea { width: 32px; height: 2px; background: var(--chispa); }
+
+  .hero-arte { position: relative; display: flex; justify-content: center; }
+
+  .hero-foto {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    transform: rotate(-2deg);
+    border: 6px solid var(--blanco-taller);
+  }
+  
+  .hero-foto-chispa {
+    position: absolute;
+    top: 12%;
+    right: 8%;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--chispa);
+    box-shadow: 0 0 0 6px rgba(244, 97, 30, 0.15);
+    animation: chispear 1.8s ease-in-out infinite;
+  }
+  @keyframes chispear {
+    0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+    50% { opacity: 1; transform: translateY(-10px) scale(1); }
+  }
+
+  section { padding: 78px 0; }
+  .titulo-seccion { margin-bottom: 44px; }
+  .titulo-seccion .mono {
+    display: block;
+    color: var(--chispa-oscura);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
+  }
+  .titulo-seccion h2 { font-size: clamp(28px, 4vw, 40px); }
+  .titulo-seccion p { color: var(--grafito-suave); margin-top: 12px; max-width: 560px; }
+
+  .grilla-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .ficha {
+    position: relative;
+    background: var(--blanco-taller);
+    border: 1px solid var(--linea-acero);
+    border-radius: 8px;
+    padding: 26px 22px;
+    box-shadow: var(--sombra);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .ficha:hover { border-color: var(--chispa); transform: translateY(-4px); }
+
+  .ficha::before, .ficha::after {
+    content: "";
+    position: absolute;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--linea-acero);
+    top: 10px;
+  }
+  .ficha::before { left: 10px; box-shadow: calc(100% - 5px) 0 0 var(--linea-acero); }
+  .ficha::after  { right: 10px; bottom: 10px; top: auto; box-shadow: calc(-100% + 5px) 0 0 var(--linea-acero); }
+
+  .ficha-codigo {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--bronce);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .ficha h3 { font-size: 18px; margin-bottom: 8px; text-transform: none; }
+  .ficha p { font-size: 14.5px; color: var(--grafito-suave); }
+
+  .taller-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  @media (max-width: 860px) { .taller-grid { grid-template-columns: 1fr; } }
+
+  .banner-foto { position: relative; padding: 0; height: 320px; overflow: hidden; }
+  .banner-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .banner-foto-capa {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(34,39,43,0.35), rgba(34,39,43,0.75));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 24px;
+  }
+  .banner-foto-capa .mono { color: var(--chispa); font-size: 12px; letter-spacing: 0.14em; margin-bottom: 10px; }
+  .banner-foto-capa h2 { color: var(--bronce); font-size: clamp(24px, 4vw, 36px); max-width: 640px; }
+
+  .placa {
+    position: relative;
+    border-radius: 10px;
+    padding: 36px;
+    overflow: hidden;
+    color: var(--bronce);
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .placa img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  .placa::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(34,39,43,0.25), rgba(34,39,43,0.92));
+    z-index: -1;
+  }
+  .placa .mono { color: var(--chispa); font-size: 12px; letter-spacing: 0.12em; }
+  .placa h3 { margin-top: 10px; font-size: 24px; }
+  .placa p { margin-top: 14px; color: #111111; font-size: 14.5px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.45); }
+  .placa-firma { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(238,240,241,0.25); font-family: 'Space Mono', monospace; font-size: 13px; color: #111111; text-shadow: none; }
+
+  .lista-check { margin-top: 8px; }
+  .lista-check li {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 14px;
+    font-size: 15px;
+    color: var(--grafito-suave);
+  }
+  .lista-check li::before {
+    content: "";
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    border-radius: 4px;
+    background: var(--chispa);
+  }
+
+  .tabla-horario {
+    background: var(--blanco-taller);
+    border: 1px solid var(--linea-acero);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 480px;
+  }
+  .fila-horario {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 22px;
+    border-bottom: 1px solid var(--linea-acero);
+    font-size: 15px;
+  }
+  .fila-horario:last-child { border-bottom: none; }
+  .fila-horario.cerrado { color: var(--chispa-oscura); font-weight: 600; }
+  .fila-horario span:first-child { font-weight: 600; }
+  .fila-horario span:last-child { font-family: 'Space Mono', monospace; }
+  .nota-horario { margin-top: 16px; font-size: 13px; color: var(--grafito-suave); max-width: 480px; }
+
+  .ubicacion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+  }
+  @media (max-width: 860px) { .ubicacion-grid { grid-template-columns: 1fr; } }
+
+  .mapa-caja {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--linea-acero);
+    min-height: 320px;
+    box-shadow: var(--sombra);
+  }
+  .mapa-caja iframe { width: 100%; height: 100%; min-height: 320px; border: 0; }
+
+  .direccion-caja {
+    background: var(--blanco-taller);
+    border: 1px solid var(--linea-acero);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: var(--sombra);
+  }
+  .direccion-caja p { color: var(--grafito-suave); margin: 6px 0 22px; }
+  .dato-linea { display: flex; gap: 12px; align-items: flex-start; margin-top: 16px; font-size: 14.5px; }
+  .dato-linea b { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--bronce); }
+
+  .cta-final {
+    background: var(--grafito);
+    color: var(--acero-claro);
+    text-align: center;
+    padding: 70px 24px;
+    border-radius: 12px;
+    margin: 0 24px 0;
+  }
+  .cta-final h2 { color: var(--bronce); font-size: clamp(26px, 4vw, 36px); }
+  .cta-final p { color: #111111; margin: 14px auto 30px; max-width: 480px; text-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+  .cta-botones { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+  footer {
+    text-align: center;
+    padding: 34px 24px;
+    color: var(--grafito-suave);
+    font-size: 13px;
+  }
+  footer .mono { display: block; margin-top: 6px; color: #111111; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--chispa);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="barra-nav">
+      <a href="#inicio" class="marca">
+        <span class="marca-icono">TC</span>
+        <span class="marca-texto">Tornería Cumpita<small>Soldadura &amp; mecanizado</small></span>
+      </a>
+      <nav class="enlaces">
+        <a href="#servicios">Servicios</a>
+        <a href="#taller">El taller</a>
+        <a href="#horario">Horario</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+      <div class="header-cta">
+        <span class="header-tel mono">+591 76472007</span>
+        <a href="tel:+59176472007" class="btn btn-primario">Llamar</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="contenedor hero-grid">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-punto"></span>TALLER EN SANTA CRUZ DE LA SIERRA</span>
+        <h1>Metal trabajado con<br><span>precisión.</span></h1>
+        <p class="intro">
+          Soldadura, tornería general y rectificado para tu vehículo, maquinaria
+          industrial o proyecto en fierro y bronce. Trabajo hecho a medida,
+          directo en el taller.
+        </p>
+        <div class="hero-botones">
+          <a href="tel:+59176472007" class="btn btn-primario">Llamar ahora</a>
+          <a href="#servicios" class="btn btn-secundario">Ver servicios</a>
+        </div>
+        <div class="hero-firma">
+          <span class="hero-firma-linea"></span>
+          A cargo de Hugo Flores P.
+        </div>
+      </div>
+
+      <div class="hero-arte">
+        <img
+          class="hero-foto"
+          src="https://images.unsplash.com/photo-1745448797901-2a4c9d9af1c1?auto=format&fit=crop&w=900&q=80"
+          alt="Soldador trabajando, chispas de soldadura en el taller">
+        <span class="hero-foto-chispa"></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="contenedor">
+      <div class="titulo-seccion">
+        <span class="mono">// LO QUE HACEMOS</span>
+        <h2>Servicios del taller</h2>
+        <p>Trabajo industrial y automotriz, del soplete al torno.</p>
+      </div>
+
+      <div class="grilla-servicios">
+        <div class="ficha">
+          <span class="ficha-codigo mono">SOLDADURA</span>
+          <h3>Soldadura en arco y oxígeno</h3>
+          <p>Unión y reparación de piezas metálicas con ambas técnicas, según el material y el grosor.</p>
+        </div>
+        <div class="ficha">
+          <span class="ficha-codigo mono">TORNERIA</span>
+          <h3>Tornería en general</h3>
+          <p>Fabricación y ajuste de piezas a medida, para uso industrial o automotriz.</p>
+        </div>
+        <div class="ficha">
+          <span class="ficha-codigo mono">FUNDIDOS</span>
+          <h3>Obra en bronce y fierro fundido</h3>
+          <p>Trabajo y reparación de piezas en bronce, fierro fundido y aceros especiales.</p>
+        </div>
+        <div class="ficha">
+          <span class="ficha-codigo mono">FRENOS</span>
+          <h3>Rectificado de frenos</h3>
+          <p>Rectificado de discos de freno y tambores para que frenen como corresponde.</p>
+        </div>
+        <div class="ficha">
+          <span class="ficha-codigo mono">MAQUINARIA</span>
+          <h3>Mantenimiento de maquinaria</h3>
+          <p>Mantenimiento de equipo pesado, industrial y automotriz en general.</p>
+        </div>
+        <div class="ficha">
+          <span class="ficha-codigo mono">HIDRAULICA</span>
+          <h3>Prensa hidráulica</h3>
+          <p>Trabajos con prensa hidráulica para armado y desarmado de piezas.</p>
+        </div>
+        <div class="ficha">
+          <span class="ficha-codigo mono">RODAMIENTOS</span>
+          <h3>Rodamientos y poleas</h3>
+          <p>Cambio de rodamientos, poleas y maceros.</p>
+        </div>
+        <div class="ficha">
+          <span class="ficha-codigo mono">MARCHA</span>
+          <h3>Trabajo de marchas</h3>
+          <p>Revisión y reparación de marchas de vehículos y maquinaria.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="banner-foto">
+    <img src="https://images.unsplash.com/photo-1647586028042-1de4d4a935e6?auto=format&fit=crop&w=1600&q=80" alt="Chispas de un esmeril sobre una pieza de metal">
+    <div class="banner-foto-capa">
+      <p class="mono">// EN EL TALLER</p>
+      <h2>Cada pieza, ajustada a lo que necesitas</h2>
+    </div>
+  </section>
+
+  <section id="taller" style="background:var(--blanco-taller); border-top:1px solid var(--linea-acero); border-bottom:1px solid var(--linea-acero);">
+    <div class="contenedor taller-grid">
+      <div class="placa">
+        <img src="https://images.unsplash.com/photo-1764114440403-4dd539cb582a?auto=format&fit=crop&w=800&q=80" alt="Torno metálico en el taller">
+        <span class="mono">FICHA DEL TALLER</span>
+        <h3>Tornería Cumpita</h3>
+        <p>Taller de soldadura, tornería y mecanizado en Santa Cruz de la Sierra, atendiendo trabajos industriales, automotrices y a medida.</p>
+        <div class="placa-firma">Hugo Flores P. — Cel. 76472007</div>
+      </div>
+
+      <div>
+        <div class="titulo-seccion" style="margin-bottom:20px;">
+          <span class="mono">// POR QUÉ ELEGIRNOS</span>
+          <h2>Un taller, todo el trabajo</h2>
+        </div>
+        <ul class="lista-check">
+          <li>Soldadura, tornería y rectificado bajo un mismo techo, sin derivar tu trabajo a otro taller.</li>
+          <li>Atención a vehículos particulares, transporte pesado y maquinaria industrial.</li>
+          <li>Piezas hechas a medida cuando ya no se consiguen en el mercado.</li>
+          <li>Coordina tu trabajo por llamada o WhatsApp antes de acercarte.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="horario">
+    <div class="contenedor">
+      <div class="titulo-seccion">
+        <span class="mono">// ATENCIÓN</span>
+        <h2>Horario</h2>
+      </div>
+      <div class="tabla-horario">
+        <div class="fila-horario"><span>Lunes a viernes</span><span>8:00 – 18:00</span></div>
+        <div class="fila-horario"><span>Sábado</span><span>8:00 – 13:00</span></div>
+        <div class="fila-horario cerrado"><span>Domingo</span><span>Cerrado</span></div>
+      </div>
+      <p class="nota-horario">* Horario de referencia — confírmalo por WhatsApp antes de venir en horas pico.</p>
+    </div>
+  </section>
+
+  <section id="ubicacion" style="background:var(--blanco-taller); border-top:1px solid var(--linea-acero); border-bottom:1px solid var(--linea-acero);">
+    <div class="contenedor">
+      <div class="titulo-seccion">
+        <span class="mono">// CÓMO LLEGAR</span>
+        <h2>Ubicación</h2>
+      </div>
+      <div class="ubicacion-grid">
+        <div class="mapa-caja">
+          <iframe
+            src="https://www.google.com/maps?q=7R2W%2BXJ9+Av.+Quinto+Anillo+Santa+Cruz+de+la+Sierra+Bolivia&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Tornería Cumpita en el mapa">
+          </iframe>
+        </div>
+        <div class="direccion-caja">
+          <span class="mono" style="color:var(--bronce); font-size:12px;">DIRECCIÓN</span>
+          <p style="margin-top:8px; color:var(--grafito); font-weight:600;">Av. Quinto Anillo, Santa Cruz de la Sierra, Bolivia</p>
+
+          <div class="dato-linea">
+            <div>
+              <b>Código Plus</b>
+              7R2W+XJ9
+            </div>
+          </div>
+          <div class="dato-linea">
+            <div>
+              <b>Teléfono</b>
+              <span class="mono">+591 76472007</span>
+            </div>
+          </div>
+
+          <div style="margin-top:26px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://www.google.com/maps/search/?api=1&query=7R2W%2BXJ9+Santa+Cruz+de+la+Sierra+Bolivia" target="_blank" rel="noopener" class="btn btn-primario">Cómo llegar</a>
+            <a href="tel:+59176472007" class="btn btn-secundario">Llamar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta-final">
+      <h2>¿Tienes una pieza que reparar?</h2>
+      <p>Cuéntanos qué necesitas y te decimos si lo resolvemos en el momento o coordinamos una visita.</p>
+      <div class="cta-botones">
+        <a href="tel:+59176472007" class="btn btn-primario">Llamar ahora</a>
+        <a href="https://wa.me/59176472007" target="_blank" rel="noopener" class="btn btn-secundario" style="border-color:var(--acero-claro); color:var(--bronce);">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Tornería Cumpita — Hugo Flores P.
+    <span class="mono">Av. Quinto Anillo, Santa Cruz de la Sierra, Bolivia · +591 76472007</span>
+  </footer>
+
+  <script>
+
+    const secciones = document.querySelectorAll('section[id]');
+
+    const enlacesMenu = document.querySelectorAll('nav.enlaces a');
+
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          const id = entrada.target.getAttribute('id');
+          enlacesMenu.forEach((enlace) => {
+            const esActivo = enlace.getAttribute('href') === `#${id}`;
+            enlace.style.color = esActivo ? 'var(--chispa)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.5 }); // 0.5 = se activa cuando el 50% de la sección es visible
+
+    secciones.forEach((seccion) => observador.observe(seccion));
+  </script>
+
+</body>
+</html>
